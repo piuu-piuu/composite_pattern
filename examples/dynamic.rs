@@ -16,5 +16,18 @@ fn main() {
         composite_shape.points.insert(boxedpoint);
     }
 
-    // transposing all points as if they are the one structure
+    let mut scene: Vec<Box<dyn Geometry>> = Vec::new();
+    let single_point = Point {
+        x: rand::thread_rng().gen_range(1..101),
+        y: rand::thread_rng().gen_range(1..101),
+    };
+
+    scene.push(Box::new(single_point));
+    scene.push(Box::new(composite_shape));
+    for geometry in &scene {
+        //
+        //DOESN'T WORK
+        //
+        geometry.transpose(1, 1);
+    }
 }

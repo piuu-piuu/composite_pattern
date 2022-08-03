@@ -17,7 +17,7 @@ pub struct Shape {
 // Interface common for both element(s) and the composite structure
 pub trait Geometry {
     fn transpose(self, dx: u32, dy: u32);
-    fn skew(self, x: i16);
+    fn skew(self: Box<Self>, x: i16);
 }
 
 impl Geometry for Point {
@@ -28,8 +28,8 @@ impl Geometry for Point {
         println!(" into ({},{}).", self.x, self.y)
     }
 
-    fn skew(self, _x: i16) {
-        todo!();
+    fn skew(self: Box<Self>, _x: i16) {
+        ();
     }
 }
 
@@ -42,16 +42,9 @@ impl Geometry for Shape {
         }
     }
 
-    fn skew(self, _x: i16) {
-        for point in self.points.into_iter() {
+    fn skew(self: Box<Self>, _x: i16) {
+        for point in self.points {
             point.skew(_x);
         }
     }
-}
-
-pub fn generic_shape<T>(unknown: T, d: i16)
-where
-    T: Geometry,
-{
-    unknown.skew(d);
 }
