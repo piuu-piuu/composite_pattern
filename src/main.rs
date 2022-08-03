@@ -18,21 +18,18 @@ struct Shape {
 // Interface common for both element(s) and the composite structure
 trait Geometry {
     fn transpose(self, dx: u32, dy: u32);
-    fn _rotate(&self, deg: i16);
-    fn _skew(&self, deg: i16);
+    fn skew(&self, x: i16);
 }
 
 impl Geometry for Point {
     fn transpose(mut self, dx: u32, dy: u32) {
+        print!("Point ({},{}) transposed", self.x, self.y);
         self.x += dx;
         self.y += dy;
+        println!(" into ({},{}).", self.x, self.y)
     }
 
-    fn _rotate(&self, _deg: i16) {
-        todo!();
-    }
-
-    fn _skew(&self, _deg: i16) {
+    fn skew(&self, x: i16) {
         todo!();
     }
 }
@@ -45,20 +42,15 @@ impl Geometry for Shape {
         }
     }
 
-    fn _rotate(&self, _deg: i16) {
-        // todo!()
-        ();
-    }
-
-    fn _skew(&self, _deg: i16) {
+    fn skew(&self, x: i16) {
         todo!();
     }
 }
 
 // dynamic version
-fn dyn_dispatch_geometry(shape: &dyn Geometry, d: i16) {
-    shape._rotate(d);
-}
+// fn dyn_dispatch_geometry(shape: &dyn Geometry, d: i16) {
+//     shape.skew(d);
+// }
 
 fn main() {
     let mut composite_shape = Shape {
@@ -73,10 +65,10 @@ fn main() {
         composite_shape.points.insert(boxedpoint);
     }
 
-    // transposing all points as if they are one structure
+    // transposing all points as if they are the one structure
 
     // dynamic dispatch
-    dyn_dispatch_geometry(&composite_shape, rand::thread_rng().gen_range(1..360));
+    // dyn_dispatch_geometry(&composite_shape, rand::thread_rng().gen_range(1..360));
 
     // static dispatch
     composite_shape.transpose(
