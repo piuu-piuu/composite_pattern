@@ -12,7 +12,7 @@ fn main() {
         composite_shape.points.push(point);
     }
 
-    // transposing all points as if they are the one structure
+    // transposing all elements as if they are the one structure
 
     composite_shape.transpose(
         rand::thread_rng().gen_range(1..101),
