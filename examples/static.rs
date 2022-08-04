@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 use composite_pattern::*;
 use rand::Rng;
 

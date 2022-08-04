@@ -1,19 +1,15 @@
-use std::collections::HashSet;
-
 use composite_pattern::*;
 use rand::Rng;
 
 fn main() {
-    let mut composite_shape = Shape {
-        points: HashSet::new(),
-    };
+    let mut composite_shape = Shape { points: Vec::new() };
 
     for _ in 1..10 {
-        let boxedpoint = Box::new(Point {
+        let boxedpoint = Point {
             x: rand::thread_rng().gen_range(1..101),
             y: rand::thread_rng().gen_range(1..101),
-        });
-        composite_shape.points.insert(boxedpoint);
+        };
+        composite_shape.points.push(boxedpoint);
     }
 
     let mut scene: Vec<Box<dyn Geometry>> = Vec::new();
@@ -24,10 +20,8 @@ fn main() {
 
     scene.push(Box::new(single_point));
     scene.push(Box::new(composite_shape));
-    for geometry in &scene {
-        //
-        //DOESN'T WORK
-        //
-        // geometry.transpose(1, 1);
+    for geometry in &mut scene {
+        geometry.transpose(1, 1);
+        geometry.transpose(1, 1);
     }
 }
