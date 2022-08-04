@@ -1,1 +1,1 @@
-Example of a Composite patter in Rust.
+An example of a Composite pattern in Rust.
