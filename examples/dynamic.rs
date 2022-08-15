@@ -1,4 +1,4 @@
-use composite_pattern::*;
+use patterns::*;
 use rand::Rng;
 
 fn main() {

@@ -1,5 +1,5 @@
 [package]
-name = "composite_pattern"
+name = "patterns"
 version = "0.1.0"
 edition = "2021"
 
